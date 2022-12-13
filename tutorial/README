@@ -1,2 +1,2 @@
-The name of spider is "quotes".
 To start spider with command: 'scrapy crawl quotes' from the project’s top level directory.
+Run scrapy shell by "scrapy shell 'url'"
