@@ -1,5 +1,5 @@
 import scrapy
-from .items import TutorialItem
+from ..items import TutorialItem
 from scrapy.loader import ItemLoader
 from urllib.parse import urlencode
 
@@ -14,7 +14,7 @@ def proxy(url):
 
 class WhiskySpider(scrapy.Spider):
     name = 'whisky'
-    start_urls = ['https://www.whiskyshop.com/scotch-whisky&item_availability=In+Stock']
+    start_urls = ['https://www.whiskyshop.com/scotch-whisky?item_availability=In+Stock']
 
     def start_requests(self):
         yield scrapy.Request(url=proxy(self.start_urls[0]), callback=self.parse)
@@ -25,7 +25,7 @@ class WhiskySpider(scrapy.Spider):
 
             loader.add_css('name', 'a.product-item-link')
             loader.add_css('price', 'span.price')
-            loader.add_css('link', 'a.product-item-link::attr[href]')
+            loader.add_css('link', 'a.product-item-link::attr(href)')
 
             yield loader.load_item()
 
